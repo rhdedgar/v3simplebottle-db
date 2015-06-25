@@ -5,7 +5,7 @@ from bottle import route, run
 
 @route('/')
 def index():
-    return "<h1> hello OpenShift Ninja</h1>"
+    return "<h1> hello OpenShift Ninja with DB</h1>"
     
 @route('/db')
 def dbexample():
@@ -13,7 +13,7 @@ def dbexample():
 	#TODO change the connection info to env variables
 		conn = psycopg2.connect("dbname='db' user=os.environ.get('POSTGRESQL_USER') host=os.environ.get('POSTGRESQL_92_CENTOS7_SERVICE_HOST') password=os.environ.get('POSTGRESQL_PASSWORD')")
 	except:
-		print "I am unable to connect to the database"	
+		return "<h1>DB ERROR - DANGER DANGER"
 	
 	cur = conn.cursor()
 	cur.execute("""SELECT * from users""")
