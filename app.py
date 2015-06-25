@@ -11,7 +11,7 @@ def index():
 def dbexample():
 	try:
 	#TODO change the connection info to env variables
-		conn = psycopg2.connect("dbname='template1' user='dbuser' host='localhost' password='dbpass'")
+		conn = psycopg2.connect("dbname='db' user=os.environ.get('POSTGRESQL_USER') host=os.environ.get('POSTGRESQL_92_CENTOS7_SERVICE_HOST') password=os.environ.get('POSTGRESQL_PASSWORD')")
 	except:
 		print "I am unable to connect to the database"	
 	
@@ -21,7 +21,7 @@ def dbexample():
 	rows = cur.fetchall()
 	result_string = "Here are your results: \n"
 	for row in rows:
-    	result_string += row[2] + "\n"
+    	result_string += row[0] + "\n"
     	
 	return "<h2> " + result_string + "</h2>"
 
