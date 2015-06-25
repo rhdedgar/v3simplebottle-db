@@ -24,11 +24,11 @@ def dbexample():
 	cur.execute("""SELECT * from pg_user""")
 	
 	rows = cur.fetchall()
-	result_string = "Here are your results: \n"
+	result_string = "<h2>Here are your results: </h2>"
 	for row in rows:
-		result_string += row[0] + "\n"
+		result_string += "<h3>" row[0] + "</h3>"
 
-	return "<h2> " + result_string + "</h2>"
+	return  result_string
 
 if __name__ == '__main__':
 	run(host='0.0.0.0', port=8080, debug=True)
