@@ -21,7 +21,7 @@ def dbexample():
 		print( os.environ.get('POSTGRESQL_USER') + "  " + os.environ.get('POSTGRESQL_92_CENTOS7_SERVICE_HOST'))
 	
 	cur = conn.cursor()
-	cur.execute("""SELECT * from users""")
+	cur.execute("""SELECT * from pg_user""")
 	
 	rows = cur.fetchall()
 	result_string = "Here are your results: \n"
