@@ -10,11 +10,13 @@ def index():
 
 @route('/db')
 def dbexample():
+    print(os.environ.get('POSTGRESQL_USER'))
+    print("After Env")
 	try:
 		#TODO change the connection info to env variables
-		conn = psycopg2.connect(dbname='db', user=os.environ.get('POSTGRESQL_USER'), host=os.environ.get('POSTGRESQL_92_CENTOS7_SERVICE_HOST'), password=os.environ.get('POSTGRESQL_PASSWORD'))
+		conn = psycopg2.connect(database='db', user=os.environ.get('POSTGRESQL_USER'), host=os.environ.get('POSTGRESQL_92_CENTOS7_SERVICE_HOST'), password=os.environ.get('POSTGRESQL_PASSWORD'))
 	except:
-		return os.environ.get('POSTGRESQL_USER') + "  " + os.environ.get('POSTGRESQL_92_CENTOS7_SERVICE_HOST')
+        print( os.environ.get('POSTGRESQL_USER') + "  " + os.environ.get('POSTGRESQL_92_CENTOS7_SERVICE_HOST'))
 	
 	cur = conn.cursor()
 	cur.execute("""SELECT * from users""")
