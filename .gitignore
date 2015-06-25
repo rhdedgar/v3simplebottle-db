@@ -59,6 +59,6 @@ docs/_build/
 # PyBuilder
 target/
 
-v3simplebottle.iml
+v3simplebottle-db.iml
 
 
