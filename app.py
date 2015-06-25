@@ -1,8 +1,10 @@
 __author__ = 'spousty'
 
 import psycopg2
-from bottle import route, run
+from bottle import route, run, DEBUG
 import os
+
+
 
 @route('/')
 def index():
@@ -29,4 +31,4 @@ def dbexample():
 	return "<h2> " + result_string + "</h2>"
 
 if __name__ == '__main__':
-	run(host='0.0.0.0', port=8080)
+	run(host='0.0.0.0', port=8080, debug=True)
