@@ -1,5 +1,3 @@
-__author__ = 'spousty'
-
 import psycopg2
 from bottle import route, run, DEBUG
 import os
@@ -8,7 +6,7 @@ import os
 
 @route('/')
 def index():
-	return "<button type="button" onclick="alert('Hello world!')">Click Me!</button>"
+	return "<button type=\"button\" onclick=\"alert('Hello world!')\">Click Me!</button>"
 
 @route('/db')
 def dbexample():
