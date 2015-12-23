@@ -6,7 +6,7 @@ import os
 
 @route('/')
 def index():
-  print("button label")
+  print("<h1> hello OpenShift Ninja with DB</h1>")
   return "<button type=\"button\" onclick=\"alert('Hello world!')\">Click Me!</button>"
 
 @route('/db')
