@@ -7,7 +7,7 @@ import os
 @route('/')
 def index():
   test_string = """
-  <button type=\"button\" onclick=\"alert('Hello world!')\">Button 1</button>
+  <button type=\"button\" onclick=\"alert('Hello world!')\">Button 1</button> \n
   <button type=\"button\" onclick=\"alert('Hello world!')\">Button 2</button>
   """
   return test_string 
