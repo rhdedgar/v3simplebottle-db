@@ -7,8 +7,12 @@ import os
 @route('/')
 def index():
   test_string = """
-  <button type=\"button\" onclick=\"alert('Hello world!')\">Button 1</button> \n
-  <button type=\"button\" onclick=\"alert('Hello world!')\">Button 2</button>
+  <button type=\"button\" onclick=\"alert('Hello world!')\">Grade 1</button>\n
+  <button type=\"button\" onclick=\"alert('Hello world!')\">Grade 2</button>\n
+  <button type=\"button\" onclick=\"alert('Hello world!')\">Grade 3</button>\n
+  <button type=\"button\" onclick=\"alert('Hello world!')\">Grade 4</button>\n
+  <button type=\"button\" onclick=\"alert('Hello world!')\">Grade 5</button>\n
+  <button type=\"button\" onclick=\"alert('Hello world!')\">Grade 6</button>\n
   """
   return test_string 
 
