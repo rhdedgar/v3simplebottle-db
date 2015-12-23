@@ -6,13 +6,15 @@ import os
 
 @route('/')
 def index():
-  grade1 = "<button type=\"button\" onclick=\"alert(\'Hello world!\')\">Grade 1</button>"
-  grade2 = "<button type=\"button\" onclick=\"alert(\'Hello world!\')\">Grade 2</button>"
-  grade3 = "<button type=\"button\" onclick=\"alert(\'Hello world!\')\">Grade 3</button>"
-  grade4 = "<button type=\"button\" onclick=\"alert(\'Hello world!\')\">Grade 4</button>"
-  grade5 = "<button type=\"button\" onclick=\"alert(\'Hello world!\')\">Grade 5</button>"
-  grade6 = "<button type=\"button\" onclick=\"alert(\'Hello world!\')\">Grade 6</button>"
-  test_string = "<h3>" + grade1 + grade2 + grade3 + grade4 + grade5 + grade6 + "</h3>"
+  test_string = "<h2>Here are your results: </h2>"
+  all_buttons = (
+  "<button type=\"button\" onclick=\"alert(\'Hello world!\')\">Grade 1</button>"
+  "<button type=\"button\" onclick=\"alert(\'Hello world!\')\">Grade 2</button>"
+  "<button type=\"button\" onclick=\"alert(\'Hello world!\')\">Grade 3</button>"
+  "<button type=\"button\" onclick=\"alert(\'Hello world!\')\">Grade 4</button>"
+  "<button type=\"button\" onclick=\"alert(\'Hello world!\')\">Grade 5</button>"
+  "<button type=\"button\" onclick=\"alert(\'Hello world!\')\">Grade 6</button>"
+  )
   return test_string 
 
 @route('/db')
