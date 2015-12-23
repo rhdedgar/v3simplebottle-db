@@ -6,14 +6,14 @@ import os
 
 @route('/')
 def index():
-	return "<button type=\"button\" onclick=\"alert('Hello world!')\">Click Me!</button>"
+  print("button label")
+  return "<button type=\"button\" onclick=\"alert('Hello world!')\">Click Me!</button>"
 
 @route('/db')
 def dbexample():
 	print(os.environ.get('POSTGRESQL_USER'))
 	print("After Env")
 	try:
-		#TODO change the connection info to env variables
 		conn = psycopg2.connect(database='kanji', user=os.environ.get('POSTGRESQL_USER'), host=os.environ.get('POSTGRESQL_92_CENTOS7_SERVICE_HOST'), password=os.environ.get('POSTGRESQL_PASSWORD'))
 	except:
 		print( os.environ.get('POSTGRESQL_USER') + "  " + os.environ.get('POSTGRESQL_92_CENTOS7_SERVICE_HOST'))
@@ -29,4 +29,4 @@ def dbexample():
 	return  result_string
 
 if __name__ == '__main__':
-	run(host='0.0.0.0', port=8080, debug=True)
+    run(host='0.0.0.0', port=8080, debug=True)
