@@ -6,7 +6,6 @@ import os
 
 @route('/')
 def index():
-    test_string = "<h2>Here are your results: </h2>"
     all_buttons = (
     '<button type=\"button\" onclick=\"alert(\'Hello world!\')\">Grade 1</button>\n'
     '<button type=\"button\" onclick=\"alert(\'Hello world!\')\">Grade 2</button>\n'
@@ -15,9 +14,7 @@ def index():
     '<button type=\"button\" onclick=\"alert(\'Hello world!\')\">Grade 5</button>\n'
     '<button type=\"button\" onclick=\"alert(\'Hello world!\')\">Grade 6</button>\n'
     )
-    for row in all_buttons:
-      test_string += row[0] + row[1] + row[2] + row[3] + row[4] + row[5]
-    return test_string
+    return all_buttons
 
 @route('/db')
 def dbexample():
