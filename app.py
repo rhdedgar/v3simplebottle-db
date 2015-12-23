@@ -16,7 +16,7 @@ def index():
     '<button type=\"button\" onclick=\"alert(\'Hello world!\')\">Grade 6</button>'
     )
     for row in all_buttons:
-      test_string += row[0] + row[1] + row[2] + row[3] + row[4] + row[5] + row[6]
+      test_string += row[0] + row[1] + row[2] + row[3] + row[4] + row[5]
     return test_string
 
 @route('/db')
