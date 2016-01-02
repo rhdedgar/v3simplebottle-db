@@ -7,18 +7,12 @@ import os
 @route('/')
 def index():
     all_buttons = (
-        '<button type="button" onclick="alert(\'Hello world!\')">Grade 1\
-      </button>'
-        '<button type="button" onclick="alert(\'Hello world!\')">Grade 2\
-      </button>'
-        '<button type="button" onclick="alert(\'Hello world!\')">Grade 3\
-       </button>'
-        '<button type="button" onclick="alert(\'Hello world!\')">Grade 4\
-       </button>'
-        '<button type="button" onclick="alert(\'Hello world!\')">Grade 5\
-      </button>'
-        '<button type="button" onclick="alert(\'Hello world!\')">Grade 6\
-       </button>'
+    '<button type=\"button\" onclick=\"alert(\'Hello world!\')\">Grade 1</button>\n'
+    '<button type=\"button\" onclick=\"alert(\'Hello world!\')\">Grade 2</button>\n'
+    '<button type=\"button\" onclick=\"alert(\'Hello world!\')\">Grade 3</button>\n'
+    '<button type=\"button\" onclick=\"alert(\'Hello world!\')\">Grade 4</button>\n'
+    '<button type=\"button\" onclick=\"alert(\'Hello world!\')\">Grade 5</button>\n'
+    '<button type=\"button\" onclick=\"alert(\'Hello world!\')\">Grade 6</button>\n'
     )
     return all_buttons
 
