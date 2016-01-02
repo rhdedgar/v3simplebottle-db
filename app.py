@@ -1,5 +1,5 @@
 import psycopg2
-from bottle import route, run
+from bottle import route, run, DEBUG
 import os
 
 
