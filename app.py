@@ -7,12 +7,12 @@ import os
 @route('/')
 def index():
     all_buttons = (
-    '<button type=\"button\" onclick=\"alert(\'Hello world!\')\">Grade 1</button>\n'
-    '<button type=\"button\" onclick=\"alert(\'Hello world!\')\">Grade 2</button>\n'
-    '<button type=\"button\" onclick=\"alert(\'Hello world!\')\">Grade 3</button>\n'
-    '<button type=\"button\" onclick=\"alert(\'Hello world!\')\">Grade 4</button>\n'
-    '<button type=\"button\" onclick=\"alert(\'Hello world!\')\">Grade 5</button>\n'
-    '<button type=\"button\" onclick=\"alert(\'Hello world!\')\">Grade 6</button>\n'
+        '<button type=\"button\" onclick=\"alert(\'Hello world!\')\">Grade 1</button>\n'
+        '<button type=\"button\" onclick=\"alert(\'Hello world!\')\">Grade 2</button>\n'
+        '<button type=\"button\" onclick=\"alert(\'Hello world!\')\">Grade 3</button>\n'
+        '<button type=\"button\" onclick=\"alert(\'Hello world!\')\">Grade 4</button>\n'
+        '<button type=\"button\" onclick=\"alert(\'Hello world!\')\">Grade 5</button>\n'
+        '<button type=\"button\" onclick=\"alert(\'Hello world!\')\">Grade 6</button>\n'
     )
     return all_buttons
 
@@ -23,7 +23,7 @@ def dbexample():
     try:
       conn = psycopg2.connect(database='kanji', user=os.environ.get('POSTGRESQL_USER'), host=os.environ.get('POSTGRESQL_SERVICE_HOST'), password=os.environ.get('POSTGRESQL_PASSWORD'))
     except:
-      print( os.environ.get('POSTGRESQL_USER') + "  " + os.environ.get('POSTGRESQL_SERVICE_HOST'))
+        print(os.environ.get('POSTGRESQL_USER') + "  " + os.environ.get('POSTGRESQL_SERVICE_HOST'))
  
     cur = conn.cursor()
     cur.execute("""SELECT kanj, von, vkun, transl from info WHERE school = '1'""")
@@ -31,7 +31,7 @@ def dbexample():
     rows = cur.fetchall()
     result_string = "<h2>Here are your results: </h2>"
     for row in rows:
-      result_string += "<h3>" + row[0] + ", " + row[1] + row[2] + row[3] + "</h3>"
+        result_string += "<h3>" + row[0] + ", " + row[1] + row[2] + row[3] + "</h3>"
 
     return  result_string
 
