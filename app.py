@@ -16,6 +16,7 @@ def index():
     )
     return all_buttons
 
+
 @route('/db')
 def dbexample():
     print(os.environ.get('POSTGRESQL_USER'))
