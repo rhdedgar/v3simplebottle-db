@@ -7,27 +7,26 @@ import os
 @route('/')
 def index():
     all_buttons = (
-        '<button type=\"button\" onclick=\"dbexample()\">Grade 1</button>\n'
-        '<button type=\"button\" onclick=\"alert(\'Hello world!\')\">Grade 2</button>\n'
-        '<button type=\"button\" onclick=\"alert(\'Hello world!\')\">Grade 3</button>\n'
-        '<button type=\"button\" onclick=\"alert(\'Hello world!\')\">Grade 4</button>\n'
-        '<button type=\"button\" onclick=\"alert(\'Hello world!\')\">Grade 5</button>\n'
-        '<button type=\"button\" onclick=\"alert(\'Hello world!\')\">Grade 6</button>\n'
+        '<button type=\"submit\" name="submit" value="school 1">Grade 1</button>\n'
+        '<button type=\"submit\" name="submit" value="school 2">Grade 2</button>\n'
+        '<button type=\"submit\" name="submit" value="school 3">Grade 3</button>\n'
+        '<button type=\"submit\" name="submit" value="school 4">Grade 4</button>\n'
+        '<button type=\"submit\" name="submit" value="school 5">Grade 5</button>\n'
+        '<button type=\"submit\" name="submit" value="school 6">Grade 6</button>\n'
     )
     return all_buttons
 
 
-@route('/db')
-def dbexample():
-    print(os.environ.get('POSTGRESQL_USER'))
-    print("After Env")
-    try:
-      conn = psycopg2.connect(database='kanji', user=os.environ.get('POSTGRESQL_USER'), host=os.environ.get('POSTGRESQL_SERVICE_HOST'), password=os.environ.get('POSTGRESQL_PASSWORD'))
-    except:
-        print(os.environ.get('POSTGRESQL_USER') + "  " + os.environ.get('POSTGRESQL_SERVICE_HOST'))
- 
+@route('/<selection>/<level>')
+def db_query(selection=None, level=None):
+    
+    submitted = request.form['submit']
+    selection = submitted.split((' ')[0])
+    level = submitted.split((' ')[1])
+    
+    conn = psycopg2.connect(database='kanji', user=os.environ.get('POSTGRESQL_USER'), host=os.environ.get('POSTGRESQL_SERVICE_HOST'), password=os.environ.get('POSTGRESQL_PASSWORD'))
     cur = conn.cursor()
-    cur.execute("""SELECT kanj, von, vkun, transl from info WHERE school = '1'""")
+    cur.execute("""SELECT kanj, von, vkun, transl from %s WHERE school = %s""" % (selection, level))
 
     rows = cur.fetchall()
     result_string = "<h2>Here are your results: </h2>"
