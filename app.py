@@ -1,10 +1,11 @@
 import psycopg2
-from bottle import route, run, DEBUG
+from flask import Flask, render_template
+app = Flask(__name__)
 import os
 
 
 
-@route('/')
+@app.route('/')
 def index():
     all_buttons = (
         '<button type=\"submit\" name="submit" value="school 1">Grade 1</button>\n'
@@ -17,10 +18,10 @@ def index():
     return all_buttons
 
 
-@route('/<selection>/<level>')
+@app.route('/db')
 def db_query(selection=None, level=None):
     
-    submitted = request.form['submit']
+    submitted = index.button['submit']
     selection = submitted.split((' ')[0])
     level = submitted.split((' ')[1])
     
