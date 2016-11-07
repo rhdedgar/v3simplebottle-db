@@ -61,4 +61,6 @@ target/
 
 v3simplebottle-db.iml
 
-
+# Eclipse files
+.project
+.pydevproject

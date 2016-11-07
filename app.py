@@ -1,5 +1,5 @@
 import psycopg2
-from flask import Flask, render_template
+from flask import Flask, request
 app = Flask(__name__)
 import os
 
@@ -21,7 +21,7 @@ def index():
 @app.route('/db')
 def db_query(selection=None, level=None):
     
-    submitted = index.button['submit']
+    submitted = request.form['submit']
     selection = submitted.split((' ')[0])
     level = submitted.split((' ')[1])
     
