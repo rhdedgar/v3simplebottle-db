@@ -1,8 +1,7 @@
 import os
 
-from flask import Flask, request
+from flask import Flask, request, render_template
 import psycopg2
-
 
 app = Flask(__name__)
 
@@ -10,25 +9,27 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    all_buttons = (
-        '<button type=\"submit\" name="submit" value="school 1">Grade 1</button>\n'
-        '<button type=\"submit\" name="submit" value="school 2">Grade 2</button>\n'
-        '<button type=\"submit\" name="submit" value="school 3">Grade 3</button>\n'
-        '<button type=\"submit\" name="submit" value="school 4">Grade 4</button>\n'
-        '<button type=\"submit\" name="submit" value="school 5">Grade 5</button>\n'
-        '<button type=\"submit\" name="submit" value="school 6">Grade 6</button>\n'
-    )
+#    all_buttons = (
+#        '<button type=\"submit\" name="submit" value="school 1">Grade 1</button>\n'
+#        '<button type=\"submit\" name="submit" value="school 2">Grade 2</button>\n'
+#        '<button type=\"submit\" name="submit" value="school 3">Grade 3</button>\n'
+#        '<button type=\"submit\" name="submit" value="school 4">Grade 4</button>\n'
+#        '<button type=\"submit\" name="submit" value="school 5">Grade 5</button>\n'
+#        '<button type=\"submit\" name="submit" value="school 6">Grade 6</button>\n'
+#    )
     
     #submitted = request.form['submit']
     #selection = submitted.split((' ')[0])
     #level = submitted.split((' ')[1])
     
-    return all_buttons
+    return render_template('main.html')
 
 
-@app.route('/<selection>/<level>')
+@app.route('/<selection>/<level>', methods=['POST', 'GET'])
 def db_query(selection=None, level=None):
 
+    if request.method == 'POST':
+        selection = 'pass'
     conn = psycopg2.connect(database='kanji', user=os.environ.get('POSTGRESQL_USER'), host=os.environ.get('POSTGRESQL_SERVICE_HOST'), password=os.environ.get('POSTGRESQL_PASSWORD'))
     cur = conn.cursor()
     cur.execute("""SELECT kanj, von, vkun, transl FROM info WHERE %s = %s""" % (selection, level))
