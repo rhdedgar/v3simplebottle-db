@@ -27,7 +27,7 @@ def index():
 
 
 @app.route('/<selection>/<level>')
-def db_query(selection, level):
+def db_query(selection=None, level=None):
 
     conn = psycopg2.connect(database='kanji', user=os.environ.get('POSTGRESQL_USER'), host=os.environ.get('POSTGRESQL_SERVICE_HOST'), password=os.environ.get('POSTGRESQL_PASSWORD'))
     cur = conn.cursor()
