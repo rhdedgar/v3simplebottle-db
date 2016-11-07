@@ -1,7 +1,10 @@
-import psycopg2
-from flask import Flask, request
-app = Flask(__name__)
 import os
+
+from flask import Flask, request
+import psycopg2
+
+
+app = Flask(__name__)
 
 
 
@@ -15,19 +18,20 @@ def index():
         '<button type=\"submit\" name="submit" value="school 5">Grade 5</button>\n'
         '<button type=\"submit\" name="submit" value="school 6">Grade 6</button>\n'
     )
+    
+    #submitted = request.form['submit']
+    #selection = submitted.split((' ')[0])
+    #level = submitted.split((' ')[1])
+    
     return all_buttons
 
 
-@app.route('/db')
-def db_query(selection=None, level=None):
-    
-    submitted = request.form['submit']
-    selection = submitted.split((' ')[0])
-    level = submitted.split((' ')[1])
-    
+@app.route('/<selection>/<level>')
+def db_query(selection, level):
+
     conn = psycopg2.connect(database='kanji', user=os.environ.get('POSTGRESQL_USER'), host=os.environ.get('POSTGRESQL_SERVICE_HOST'), password=os.environ.get('POSTGRESQL_PASSWORD'))
     cur = conn.cursor()
-    cur.execute("""SELECT kanj, von, vkun, transl from %s WHERE school = %s""" % (selection, level))
+    cur.execute("""SELECT kanj, von, vkun, transl from info WHERE %s = %s""" % (selection, level))
 
     rows = cur.fetchall()
     result_string = "<h2>Here are your results: </h2>"
@@ -37,5 +41,5 @@ def db_query(selection=None, level=None):
     return  result_string
 
 if __name__ == '__main__':
-    run(host='0.0.0.0', port=8080, debug=True)
+    app.run(host='0.0.0.0', port=8080, debug=True)
 
