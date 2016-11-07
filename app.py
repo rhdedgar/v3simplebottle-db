@@ -31,7 +31,7 @@ def db_query(selection=None, level=None):
 
     conn = psycopg2.connect(database='kanji', user=os.environ.get('POSTGRESQL_USER'), host=os.environ.get('POSTGRESQL_SERVICE_HOST'), password=os.environ.get('POSTGRESQL_PASSWORD'))
     cur = conn.cursor()
-    cur.execute("""SELECT kanj, von, vkun, transl from info WHERE %s = %s""" % (selection, level))
+    cur.execute("""SELECT kanj, von, vkun, transl FROM info WHERE %s = %s""" % (selection, level))
 
     rows = cur.fetchall()
     result_string = "<h2>Here are your results: </h2>"
