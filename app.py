@@ -16,8 +16,8 @@ def index():
 def db_query(selection=None, level=None):
 
     if request.method == 'POST':
-        selection = request.value.split(' ')[0]
-        level = request.value.split(' ')[1]
+        selection = request.form.split(' ')[0]
+        level = request.form.split(' ')[1]
     conn = psycopg2.connect(database='kanji', user=os.environ.get('POSTGRESQL_USER'), host=os.environ.get('POSTGRESQL_SERVICE_HOST'), password=os.environ.get('POSTGRESQL_PASSWORD'))
     cur = conn.cursor()
     cur.execute("""SELECT kanj, von, vkun, transl FROM info WHERE %s = %s""" % (selection, level))
