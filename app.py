@@ -6,7 +6,6 @@ import psycopg2
 app = Flask(__name__)
 
 
-
 @app.route('/')
 def index():
     return render_template('main.html')
@@ -28,6 +27,7 @@ def db_query(selection=None, level=None):
         result_string += "<h3>" + row[0] + ", " + row[1] + ", " + row[2] + ", "  + row[3] + "</h3>"
 
     return  result_string
+
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8080, debug=True)
