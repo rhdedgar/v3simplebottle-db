@@ -32,6 +32,7 @@ def db_query(selection=None, level=None):
     options = (selection, level)
     cur.execute(query, options)
 
+    # test
     rows = cur.fetchall()
     result_string = "<h2>Here are your results: </h2>"
     for row in rows:
