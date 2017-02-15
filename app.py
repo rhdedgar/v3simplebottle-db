@@ -28,11 +28,8 @@ def db_query(selection=None, level=None):
                             host=os.environ.get('POSTGRESQL_SERVICE_HOST'),\
                             password=os.environ.get('POSTGRESQL_PASSWORD'))
     cur = conn.cursor()
-    query = "SELECT kanj, von, vkun, transl FROM info WHERE (%s) = (%s);"
-    options = (selection, level)
-    cur.execute(query, options)
+    cur.execute("""SELECT kanj, von, vkun, transl FROM info WHERE %s = %s""" % (selection, level))
 
-    # test
     rows = cur.fetchall()
     result_string = "<h2>Here are your results: </h2>"
     for row in rows:
