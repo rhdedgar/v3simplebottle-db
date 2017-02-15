@@ -29,7 +29,8 @@ def db_query(selection=None, level=None):
                             password=os.environ.get('POSTGRESQL_PASSWORD'))
     cur = conn.cursor()
     query = "SELECT kanj, von, vkun, transl FROM info WHERE (%s) = (%s);"
-    cur.execute(query, selection, level)
+    options = (selection, level)
+    cur.execute(query, options)
 
     rows = cur.fetchall()
     result_string = "<h2>Here are your results: </h2>"
