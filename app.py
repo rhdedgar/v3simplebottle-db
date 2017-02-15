@@ -1,25 +1,35 @@
+"""
+ A python flask APP to scroll through a kanji database
+"""
+
 import os
 
+# pylint: disable=import-error
 from flask import Flask, request, render_template
 import psycopg2
 
-app = Flask(__name__)
+APP = Flask(__name__)
 
-
-@app.route('/')
+@APP.route('/')
 def index():
+    """ Main page, displays all kanji groups. """
     return render_template('main.html')
 
 
-@app.route('/<selection>/<level>', methods=['POST', 'GET'])
+@APP.route('/<selection>/<level>', methods=['POST', 'GET'])
 def db_query(selection=None, level=None):
+    """ Category page, displays a particular grade or JLPT level. """
 
     if request.method == 'POST':
         selection = request.form.split(' ')[0]
         level = request.form.split(' ')[1]
-    conn = psycopg2.connect(database='kanji', user=os.environ.get('POSTGRESQL_USER'), host=os.environ.get('POSTGRESQL_SERVICE_HOST'), password=os.environ.get('POSTGRESQL_PASSWORD'))
+
+    conn = psycopg2.connect(database='kanji', user=os.environ.get('POSTGRESQL_USER'),\
+                            host=os.environ.get('POSTGRESQL_SERVICE_HOST'),\
+                            password=os.environ.get('POSTGRESQL_PASSWORD'))
     cur = conn.cursor()
-    cur.execute("""SELECT kanj, von, vkun, transl FROM info WHERE %s = %s""" % (selection, level))
+    query = "SELECT kanj, von, vkun, transl FROM info WHERE (%s) = (%s);"
+    cur.execute(query, selection, level)
 
     rows = cur.fetchall()
     result_string = "<h2>Here are your results: </h2>"
@@ -30,5 +40,4 @@ def db_query(selection=None, level=None):
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=8080, debug=True)
-
+    APP.run(host='0.0.0.0', port=8080, debug=True)
