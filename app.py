@@ -1,5 +1,5 @@
 """
- A python flask APP to scroll through a kanji database
+ A python flask application to scroll through a kanji database
 """
 
 import os
@@ -17,7 +17,7 @@ def index():
 
 
 @APP.route('/<selection>/<level>', methods=['POST', 'GET'])
-def db_query(selection=None, level=None):
+def db_level(selection=None, level=None):
     """ Category page, displays a particular grade or JLPT level. """
 
     if request.method == 'POST':
@@ -32,10 +32,17 @@ def db_query(selection=None, level=None):
 
     rows = cur.fetchall()
     result_string = "<h2>Here are your results: </h2>"
+
     for row in rows:
         result_string += "<h3>" + row[0] + ", " + row[1] + ", " + row[2] + ", "  + row[3] + "</h3>"
 
-    return  result_string
+    return render_template('flashcard.html')
+
+
+@APP.route('/<selection>/<level>/<kanji>', methods=['POST', 'GET'])
+def db_kanji(selection=None, level=None, kanji=None):
+    """ Category page, displays a particular grade or JLPT level. """
+    print(selection, level, kanji)
 
 
 if __name__ == '__main__':
