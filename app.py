@@ -36,7 +36,7 @@ def db_level(selection=None, level=None):
     for row in rows:
         result_string += "<h3>" + row[0] + ", " + row[1] + ", " + row[2] + ", "  + row[3] + "</h3>"
 
-    return render_template('flashcard.html')
+    return render_template('flashcard.html', result_string)
 
 
 @APP.route('/<selection>/<level>/<kanji>', methods=['POST', 'GET'])
