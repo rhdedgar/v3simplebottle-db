@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>My Webpage</title>
+    <title>Kanji List</title>
 </head>
 <body>
     <ul id="kanji">
-    {% for item in kanji %}
+    {% for item in kanji| split_space %}
         <li><a href="{{ item }}">{{ item }}</a></li>
     {% endfor %}
     </ul>
