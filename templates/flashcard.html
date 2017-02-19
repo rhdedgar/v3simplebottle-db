@@ -5,7 +5,7 @@
 </head>
 <body>
     <ul id="kanji">
-    {% for item in kanji| split_space %}
+    {% for item in kanji_list| split_space %}
         <li><a href="{{ item }}">{{ item }}</a></li>
     {% endfor %}
     </ul>

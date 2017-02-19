@@ -32,12 +32,12 @@ def db_level(selection=None, level=None):
 
     rows = cur.fetchall()
     result_string = '' #"<h2>Here are your results: </h2>"
-    kanji_list = []
+    k_list = []
     for row in rows:
         result_string += row[0] + ", " + row[1] + ", " + row[2] + ", "  + row[3]
-        kanji_list.append(row[0])
+        k_list.append(row[0])
 
-    return render_template('flashcard.html', kanji=result_string)
+    return render_template('flashcard.html', kanji_list=k_list)
 
 
 @APP.route('/<selection>/<level>/<kanji>', methods=['POST', 'GET'])
