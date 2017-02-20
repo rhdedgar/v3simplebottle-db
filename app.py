@@ -31,7 +31,7 @@ def db_level(selection=None, level=None):
     cur.execute("""SELECT kanj, von, vkun, transl FROM info WHERE %s = %s""" % (selection, level))
 
     rows = cur.fetchall()
-    result_string = '' #"<h2>Here are your results: </h2>"
+    result_string = ''
     k_list = []
     for row in rows:
         result_string += row[0] + ", " + row[1] + ", " + row[2] + ", "  + row[3]
@@ -41,9 +41,22 @@ def db_level(selection=None, level=None):
 
 
 @APP.route('/<selection>/<level>/<kanji>', methods=['POST', 'GET'])
-def db_kanji(selection=None, level=None, kanji=None):
+def db_kanji(kanji=None):
     """ Category page, displays a particular grade or JLPT level. """
-    print(selection, level, kanji)
+
+    if request.method == 'POST':
+        kanji = request.form.split(' ')[0]
+
+    conn = psycopg2.connect(database='kanji', user=os.environ.get('POSTGRESQL_USER'),\
+                            host=os.environ.get('POSTGRESQL_SERVICE_HOST'),\
+                            password=os.environ.get('POSTGRESQL_PASSWORD'))
+    cur = conn.cursor()
+    cur.execute("""SELECT kanj, von, vkun, transl FROM info WHERE kanj = %s""" % kanji)
+
+    rows = cur.fetchall()
+
+    return render_template('kanji_list.html', selected=rows)
+
 
 
 def split_space(string):
