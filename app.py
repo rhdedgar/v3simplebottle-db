@@ -58,7 +58,11 @@ def db_kanji(kanji=None):
 
     rows = cur.fetchall()
 
-    return render_template('kanji_list.html', selected=rows)
+    result_string = "<h2>Here are your results: </h2>"
+    for row in rows:
+        result_string += "<h3>" + row[0] + ", " + row[1] + ", " + row[2] + ", "  + row[3] + "</h3>"
+
+    return  result_string
 
 
 def split_space(string):
