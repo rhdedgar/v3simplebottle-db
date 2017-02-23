@@ -37,10 +37,11 @@ def db_level(selection=None, level=None):
         result_string += row[0] + ", " + row[1] + ", " + row[2] + ", "  + row[3]
         k_list.append(row[0])
 
-    response = make_response(render_template('flashcard.html', kanji_list=k_list))
-    response.headers['u_level'] = level
-    response.headers['u_selection'] = selection
-    return response
+    return render_template('flashcard.html',
+                          kanji_list=k_list,
+                          u_level=level,
+                          u_selection=selection
+                          )
 
 
 @APP.route('/<selection>/<level>/<kanji>', methods=['POST', 'GET'])
