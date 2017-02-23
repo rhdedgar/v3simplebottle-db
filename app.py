@@ -44,17 +44,20 @@ def db_level(selection=None, level=None):
 
 
 @APP.route('/<selection>/<level>/<kanji>', methods=['POST', 'GET'])
-def db_kanji(kanji=None):
+# pylint: disable=unused-argument
+def db_kanji(selection=None, level=None, kanji=None):
     """ Category page, displays a particular grade or JLPT level. """
 
     if request.method == 'POST':
-        kanji = request.form.split(' ')[0]
+        selection = request.form.split(' ')[0]
+        level = request.form.split(' ')[1]
+        kanji = request.form.split(' ')[2]
 
     conn = psycopg2.connect(database='kanji', user=os.environ.get('POSTGRESQL_USER'),\
                             host=os.environ.get('POSTGRESQL_SERVICE_HOST'),\
                             password=os.environ.get('POSTGRESQL_PASSWORD'))
     cur = conn.cursor()
-    cur.execute("""SELECT kanj, von, vkun, transl FROM info WHERE kanj = %s""" % kanji)
+    cur.execute("""SELECT kanj, von, vkun, transl FROM info WHERE kanj = '%s'""" % kanji)
 
     rows = cur.fetchall()
 
