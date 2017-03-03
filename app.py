@@ -5,7 +5,7 @@
 import os
 
 # pylint: disable=import-error
-from flask import Flask, request, render_template, make_response
+from flask import Flask, request, render_template
 import psycopg2
 
 APP = Flask(__name__)
@@ -37,10 +37,10 @@ def db_level(selection=None, level=None):
         result_string += row[0] + ", " + row[1] + ", " + row[2] + ", "  + row[3]
         k_list.append(row[0])
 
-    return render_template('flashcard.html',
-                          kanji_list=k_list,
-                          u_level=level,
-                          u_selection=selection
+    return render_template('kanji_list.html',
+                           kanji_list=k_list,
+                           u_level=level,
+                           u_selection=selection
                           )
 
 
@@ -66,7 +66,7 @@ def db_kanji(selection=None, level=None, kanji=None):
     for row in rows:
         result_string += "<h3>" + row[0] + ", " + row[1] + ", " + row[2] + ", "  + row[3] + "</h3>"
 
-    return  result_string
+    return render_template('flashcard.html', result_string)
 
 
 def split_space(string):

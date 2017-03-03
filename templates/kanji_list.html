@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Kanji view</title>
+    <title>Kanji List</title>
 </head>
 <body>
     <ul id="kanji">
-    {% for item in selected %}
-        <li>"{{ item }}"</li>
+    {% for item in kanji_list %}
+        <li><a href="/{{ u_selection }}/{{ u_level }}/{{ item }}">{{ item }}</a></li>
     {% endfor %}
     </ul>
 </body>
