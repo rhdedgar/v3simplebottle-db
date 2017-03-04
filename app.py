@@ -62,11 +62,11 @@ def db_kanji(selection=None, level=None, kanji=None):
 
     rows = cur.fetchall()
 
-    result_string = "<h2>Here are your results: </h2>"
+    result_string = ""
     for row in rows:
-        result_string += "<h3>" + row[0] + ", " + row[1] + ", " + row[2] + ", "  + row[3] + "</h3>"
+        result_string += row[0] + ", " + row[1] + ", " + row[2] + ", "  + row[3]
 
-    return render_template('flashcard.html', resultstring=result_string)
+    return render_template('flashcard.html', res_string=result_string)
 
 
 def split_space(string):
