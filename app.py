@@ -66,7 +66,7 @@ def db_kanji(selection=None, level=None, kanji=None):
     for row in rows:
         result_string += "<h3>" + row[0] + ", " + row[1] + ", " + row[2] + ", "  + row[3] + "</h3>"
 
-    return render_template('flashcard.html', result_string)
+    return render_template('flashcard.html', resultstring=result_string)
 
 
 def split_space(string):
