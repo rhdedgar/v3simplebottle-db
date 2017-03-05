@@ -66,10 +66,10 @@ def db_kanji(selection=None, level=None, kanji=None):
 #    for row in rows:
 #        result_string += row[0] + ", " + row[1] + ", " + row[2] + ", "  + row[3]
 
-    kanji_query = 'SELECT kanj, von, vkun, transl FROM info WHERE kanj = "%s"' % kanji
+    kanji_query = """SELECT kanj, von, vkun, transl FROM info WHERE kanj = '%s'""" % kanji
     res_string = get_results(kanji_query)
 
-    list_query = 'SELECT kanj, von, vkun, transl FROM info WHERE %s = %s' % (selection, level)
+    list_query = 'SELECT kanj FROM info WHERE %s = %s' % (selection, level)
     kanji_list = get_results(list_query)
 
     return render_template('flashcard.html',
@@ -91,9 +91,11 @@ def get_results(query):
 
     result_string = ""
     for row in rows:
-        result_string += row[0] + ", " + row[1] + ", " + row[2] + ", "  + row[3]
-
-    return result_string
+        if len(row) > 1:
+            result_string += row[0] + ", " + row[1] + ", " + row[2] + ", "  + row[3]
+            return result_string
+        else:
+            return row[0]
 
 
 def split_space(string):
