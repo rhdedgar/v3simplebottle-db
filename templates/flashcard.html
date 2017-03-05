@@ -5,6 +5,12 @@
 </head>
 <body>
     {{ res_string }}
+    <form action="/{{ selection }}/{{ level }}/{{ p_kanji }}">
+    <input type="submit" value="{{ selection }} {{ level }} {{ prev_kanji }}" />
+    </form>
+    <form action="/{{ selection }}/{{ level }}/{{ n_kanji }}">
+    <input type="submit" value="{{ selection }} {{ level }} {{ next_kanji }}" />
+    </form>
     {{ k_list }}
 </body>
 </html>
