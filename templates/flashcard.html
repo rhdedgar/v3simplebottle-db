@@ -5,12 +5,11 @@
 </head>
 <body>
     {{ res_string }}
-    <form action="/{{ selection }}/{{ level }}/{{ p_kanji }}">
-    <input type="submit" value="{{ selection }} {{ level }} {{ prev_kanji }}" />
+    <form action="/{{ u_selection }}/{{ u_level }}/{{ p_kanji }}">
+    <input type="submit" value="Previous {{ p_kanji }}" />
     </form>
-    <form action="/{{ selection }}/{{ level }}/{{ n_kanji }}">
-    <input type="submit" value="{{ selection }} {{ level }} {{ next_kanji }}" />
+    <form action="/{{ u_selection }}/{{ u_level }}/{{ n_kanji }}">
+    <input type="submit" value="Next {{ n_kanji }}" />
     </form>
-    {{ k_list }}
 </body>
 </html>

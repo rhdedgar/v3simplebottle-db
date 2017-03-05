@@ -58,9 +58,11 @@ def db_kanji(selection=None, level=None, kanji=None):
     res_string = get_results(kanji_query)
 
     list_query = 'SELECT kanj FROM info WHERE %s = %s' % (selection, level)
-    kanji_list = get_results(list_query)
+    kanji_string = get_results(list_query)
 
-    current_pos = kanji_list.index(res_string)
+    kanji_list = [l for l in kanji_string]
+    current_pos = kanji_list.index(res_string[0])
+
 
     if current_pos == kanji_list[-1]:
         next_kanji = kanji_list[0]
@@ -95,13 +97,12 @@ def get_results(query):
 
     rows = cur.fetchall()
     result_string = ""
-    result_list = []
 
     for row in rows:
         if len(row) == 4:
             result_string += row[0] + ", " + row[1] + ", " + row[2] + ", "  + row[3]
         else:
-            result_list.append(row[0])
+            result_string += row[0]
 
     return result_string
 
