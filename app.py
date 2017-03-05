@@ -90,12 +90,16 @@ def get_results(query):
     rows = cur.fetchall()
 
     result_string = ""
+
     for row in rows:
-        if len(row) > 1:
+
+        if len(row) == 4:
             result_string += row[0] + ", " + row[1] + ", " + row[2] + ", "  + row[3]
-            return result_string
+
         else:
-            return row[0]
+            result_string += row[0]
+
+    return result_string
 
 
 def split_space(string):
