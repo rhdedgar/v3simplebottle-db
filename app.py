@@ -63,18 +63,15 @@ def db_kanji(selection=None, level=None, kanji=None):
     kanji_list = [l for l in kanji_string]
     current_pos = kanji_list.index(res_string[0])
 
-
-    if current_pos == kanji_list[-1]:
+    try:
+        next_kanji = kanji_list[current_pos + 1]
+    except IndexError:
         next_kanji = kanji_list[0]
-        prev_kanji = kanji_list[current_pos - 1]
 
-    elif current_pos == kanji_list[0]:
-        next_kanji = kanji_list[current_pos + 1]
+    try:
+        prev_kanji = kanji_list[current_pos - 1]
+    except IndexError:
         prev_kanji = kanji_list[-1]
-
-    else:
-        next_kanji = kanji_list[current_pos + 1]
-        prev_kanji = kanji_list[current_pos - 1]
 
     return render_template('flashcard.html',
                            res_string=res_string,
