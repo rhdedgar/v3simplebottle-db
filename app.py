@@ -97,7 +97,7 @@ def get_results(query):
     result_string = ""
 
     for row in rows:
-        if len(row) == 4:
+        if len(row) == 5:
             result_string +=\
             row[0] + ", " + row[1] + ", " + row[2] + ", "  + row[3] + ", "  + row[4]
         else:
