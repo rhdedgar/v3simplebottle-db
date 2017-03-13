@@ -29,13 +29,14 @@ def db_level(selection=None, level=None):
                             host=os.environ.get('POSTGRESQL_SERVICE_HOST'),\
                             password=os.environ.get('POSTGRESQL_PASSWORD'))
     cur = conn.cursor()
-    cur.execute("""SELECT kanj, von, vkun, transl FROM info WHERE %s = %s""" % (selection, level))
+    cur.execute\
+    ("""SELECT kanj, von, vkun, transl, roma FROM info WHERE %s = %s""" % (selection, level))
 
     rows = cur.fetchall()
     result_string = ''
     kanji_list = []
     for row in rows:
-        result_string += row[0] + ", " + row[1] + ", " + row[2] + ", "  + row[3]
+        result_string += row[0] + ", " + row[1] + ", " + row[2] + ", "  + row[3] + ", "  + row[4]
         kanji_list.append(row[0])
 
     return render_template('kanji_list.html',
@@ -54,7 +55,7 @@ def db_kanji(selection=None, level=None, kanji=None):
         level = request.form.split(' ')[1]
         kanji = request.form.split(' ')[2]
 
-    kanji_query = """SELECT kanj, von, vkun, transl FROM info WHERE kanj = '%s'""" % kanji
+    kanji_query = """SELECT kanj, von, vkun, transl, roma FROM info WHERE kanj = '%s'""" % kanji
     res_string = get_results(kanji_query)
 
     list_query = 'SELECT kanj FROM info WHERE %s = %s' % (selection, level)
@@ -97,7 +98,8 @@ def get_results(query):
 
     for row in rows:
         if len(row) == 4:
-            result_string += row[0] + ", " + row[1] + ", " + row[2] + ", "  + row[3]
+            result_string +=\
+            row[0] + ", " + row[1] + ", " + row[2] + ", "  + row[3] + ", "  + row[4]
         else:
             result_string += row[0]
 
