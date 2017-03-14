@@ -5,8 +5,8 @@
 </head>
 <body>
     {{ res_string }}
-    <audio controls>
-      <source src="{{ c_kanji }}.mp3" type="audio/mpeg">
+    <audio controls autoload>
+      <source src="kanjisay/{{ c_kanji }}.mp3" type="audio/mpeg">
     </audio>
     <form action="/{{ u_selection }}/{{ u_level }}/{{ p_kanji }}">
     <input type="submit" value="Previous {{ p_kanji }}" />
