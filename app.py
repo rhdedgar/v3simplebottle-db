@@ -79,6 +79,7 @@ def db_kanji(selection=None, level=None, kanji=None):
                            k_list=kanji_list,
                            u_level=level,
                            u_selection=selection,
+                           c_kanji=kanji,
                            p_kanji=prev_kanji,
                            n_kanji=next_kanji
                           )
